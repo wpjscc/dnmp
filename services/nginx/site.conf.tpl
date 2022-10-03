@@ -20,9 +20,9 @@ server {
 	    fastcgi_read_timeout 600;
     }
 
-    location ~ /.well-known {
-        allow all;
-    }
+    #location ~ /.well-known {
+     #   allow all;
+    #}
 
     location /.well-known/acme-challenge/ {
         default_type "text/plain";
