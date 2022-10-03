@@ -33,7 +33,17 @@ services:
       # 可以把-default 改成下列配置，以固定容器IP
       #default:
       #  ipv4_address: 10.0.0.10
-
+  certbot:
+    build: ./services/certbot
+    environment:
+      TZ: "$TZ"
+      DOMAINS: ${NGINX_DOMAINS}
+      CERTBOT_EMAILS: ${CERTBOT_EMAILS}
+      CERTBOT_TEST_CERT: ${CERTBOT_TEST_CERT}
+      CERTBOT_RSA_KEY_SIZE: ${CERTBOT_RSA_KEY_SIZE}
+    volumes:
+      - letsencrypt_certs:/etc/letsencrypt
+      - certbot_acme_challenge:/var/www/certbot
   php:
     build:
       context: ./services/php
