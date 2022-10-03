@@ -25,7 +25,8 @@ server {
     }
 
     location /.well-known/acme-challenge/ {
-        root /var/www/certbot/${domain};
+        default_type "text/plain";
+        alias /var/www/certbot/${domain}/;
     }
 
     access_log /var/log/nginx/${domain}.access.log;
