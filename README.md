@@ -25,6 +25,8 @@ crontab -e
 
 docker compose run --rm --no-TTY --entrypoint certbot certbot delete --cert-name dnmp.wpjs.cc
 
+
+#证书参考 https://github.com/evgeniy-khist/letsencrypt-docker-compose
 ```
 
 
