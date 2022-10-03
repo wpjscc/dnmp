@@ -5,6 +5,9 @@ ARG TZ
 ARG NGINX_VERSION
 ARG CONTAINER_PACKAGE_URL
 ARG NGINX_INSTALL_APPS
+ARG DOMAINS
+ARG CERTBOT_EMAILS
+
 
 ENV INSTALL_APPS=",${NGINX_INSTALL_APPS},"
 
@@ -17,4 +20,11 @@ RUN if [ -z "${INSTALL_APPS##*,certbot,*}" ]; then \
         apk add --no-cache certbot; \
     fi
 
+COPY site.conf.tpl /customization/
+COPY nginx.sh /customization/
+
+RUN chmod +x /customization/nginx.sh
+
 WORKDIR /www
+
+CMD ["/customization/nginx.sh"]
