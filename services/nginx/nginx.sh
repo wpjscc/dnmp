@@ -55,8 +55,10 @@ for domain in $domains_fixed; do
   if [ ! -f "/etc/nginx/conf.d/$domain.conf" ]; then
     echo "Creating Nginx configuration file /etc/nginx/conf.d/$domain.conf"
     template="${domain_templates_list[i]}"
-    if [ template == "laravel"]; then
+    if [ template == "laravel" ]; then
         sed "s/\${domain}/$domain/g" /customization/site.conf.tpl > "/etc/nginx/conf.d/$domain.conf"
+    elif [ template == "wintercms" ]; then
+        sed "s/\${domain}/$domain/g" /customization/wintercms-site.conf.tpl > "/etc/nginx/conf.d/$domain.conf"
     else
         sed "s/\${domain}/$domain/g" /customization/site.conf.tpl > "/etc/nginx/conf.d/$domain.conf"
     fi
