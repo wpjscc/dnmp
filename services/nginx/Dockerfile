@@ -18,6 +18,7 @@ RUN if [ -z "${INSTALL_APPS##*,certbot,*}" ]; then \
     fi
 RUN apk add --no-cache openssl
 COPY site.conf.tpl /customization/
+COPY wintercms-site.conf.tpl /customization/
 COPY nginx.sh /customization/
 
 RUN chmod +x /customization/nginx.sh
