@@ -28,7 +28,13 @@ docker compose run --rm --no-TTY --entrypoint certbot certbot delete --cert-name
 
 #证书参考 https://github.com/evgeniy-khist/letsencrypt-docker-compose
 
-假如要用其他nginx配置，可以先用laravel的模版将证书申请下来，再去 services/nginx/conf.d/下将自动以配置替换掉
+自定义的证书可以放在services/nginx/ssl 下。增加配置模版可以参考laravel和wintercms
+
+分两步
+1 增加文件
+2 nginx.sh 添加个else适配(key 值在.env中和域名一一对应)
+3 docker-compose build nginx
+4 docker-compose restart nginx
 ```
 
 
