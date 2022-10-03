@@ -34,10 +34,11 @@ services:
       #default:
       #  ipv4_address: 10.0.0.10
   certbot:
-    build: 
-      context: ./services/certbot
-      args:
-        CONTAINER_PACKAGE_URL: ${CONTAINER_PACKAGE_URL}
+    # build: 
+    #   context: ./services/certbot
+    #   args:
+    #     CONTAINER_PACKAGE_URL: ${CONTAINER_PACKAGE_URL}
+    image: wpjscc/certbot
     container_name: certbot
     environment:
       TZ: "$TZ"
