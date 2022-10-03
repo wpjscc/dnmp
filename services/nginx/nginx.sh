@@ -1,4 +1,4 @@
-#!/bin/sh
+#!/bin/bash
 
 set -e
 
@@ -47,6 +47,7 @@ fi
 
 domains_fixed=$(echo "$DOMAINS" | tr -d \")
 domain_templates_fixed=$(echo "$DOMAINS_TEMPLATES" | tr -d \")
+echo $domain_templates_fixed
 domain_templates_list=($domain_templates_fixed)
 i=0
 for domain in $domains_fixed; do
