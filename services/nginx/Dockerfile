@@ -18,11 +18,10 @@ RUN if [ -z "${INSTALL_APPS##*,certbot,*}" ]; then \
     fi
 RUN apk add --no-cache openssl bash
 
-# COPY nginx.sh /customization/
+COPY nginx.sh /customization/
 
-RUN chmod +x /etc/nginx/conf.d/nginx.sh
+RUN chmod +x /customization/nginx.sh
 
 WORKDIR /www
 
-# CMD ["/customization/nginx.sh"]
-CMD ["/etc/nginx/conf.d/nginx.sh"]
+CMD ["/customization/nginx.sh"]

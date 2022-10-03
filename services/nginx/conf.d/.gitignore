@@ -3,4 +3,3 @@
 !certs/localhost/
 !localhost.conf
 !*.tpl
-!nginx.sh
