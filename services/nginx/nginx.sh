@@ -62,7 +62,7 @@ for domain in $domains_fixed; do
     elif [ "$template" == "wintercms" ]; then
         sed "s/\${domain}/$domain/g" /customization/wintercms-site.conf.tpl > "/etc/nginx/conf.d/$domain.conf"
     else
-        sed "s/\${domain}/$domain/g" /customization/site.conf.tpl > "/etc/nginx/conf.d/$domain.conf"
+        sed "s/\${domain}/$domain/g" /customization/laravel-site.conf.tpl > "/etc/nginx/conf.d/$domain.conf"
     fi
   fi
 
