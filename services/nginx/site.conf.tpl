@@ -23,7 +23,7 @@ server {
     location ~ /.well-known {
         allow all;
     }
-    
+
     location /.well-known/acme-challenge/ {
         root /var/www/certbot/${domain};
     }
@@ -36,8 +36,8 @@ server {
     #配置HTTPS的默认访问端口为443。
     #如果未在此处配置HTTPS的默认访问端口，可能会造成Nginx无法启动。
     #如果您使用Nginx 1.15.0及以上版本，请使用listen 443 ssl代替listen 443和ssl on。
-    ssl_certificate /etc/nginx/sites/ssl/dummy/${domain}/fullchain.pem;  #需要将cert-file-name.pem替换成已上传的证书文件的名称。
-    ssl_certificate_key /etc/nginx/sites/ssl/dummy/${domain}/privkey.pem; #需要将cert-file-name.key替换成已上传的证书私钥文件的名称。
+    ssl_certificate /etc/nginx/conf.d/ssl/dummy/${domain}/fullchain.pem;  #需要将cert-file-name.pem替换成已上传的证书文件的名称。
+    ssl_certificate_key /etc/nginx/conf.d/ssl/dummy/${domain}/privkey.pem; #需要将cert-file-name.key替换成已上传的证书私钥文件的名称。
     ssl_session_timeout 5m;
     ssl_ciphers ECDHE-RSA-AES128-GCM-SHA256:ECDHE:ECDH:AES:HIGH:!NULL:!aNULL:!MD5:!ADH:!RC4;
     #表示使用的加密套件的类型。

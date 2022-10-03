@@ -34,7 +34,10 @@ services:
       #default:
       #  ipv4_address: 10.0.0.10
   certbot:
-    build: ./services/certbot
+    build: 
+      context: ./services/certbot
+      args:
+        CONTAINER_PACKAGE_URL: ${CONTAINER_PACKAGE_URL}
     container_name: certbot
     environment:
       TZ: "$TZ"
