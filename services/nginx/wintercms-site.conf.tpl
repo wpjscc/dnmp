@@ -9,7 +9,7 @@ server {
     add_header X-Frame-Options "ALLOWALL";
     add_header X-XSS-Protection "1; mode=block";
     add_header X-Content-Type-Options "nosniff";
-    client_max_body_size 10m;
+
     location / {
     #   try_files $uri $uri/ /index.php?$query_string;
     rewrite ^/.*$ /index.php last;
