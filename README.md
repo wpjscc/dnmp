@@ -1,3 +1,33 @@
+
+```
+git clone https://github.com/wpjscc/dnmp.git
+
+cd dnmp
+
+cp docker-compose.sample.yml docker-compose.yml
+
+cp env.sample .env
+
+配置 NGINX_DOMAINS，以空格分割的域名
+
+会自动生成nginx(laravel)配置
+
+
+定时刷新配置
+
+crontab -e
+
+每天运行一次
+0 0 * * * /xxx/dnmp/renew.sh
+
+
+删除证书
+
+docker compose run --rm --no-TTY --entrypoint certbot certbot delete --cert-name dnmp.wpjs.cc
+
+```
+
+
 DNMP（Docker + Nginx/Openresty + MySQL5,8 + PHP5,7,8 + Redis + ElasticSearch + MongoDB + RabbitMQ）是一款全功能的**LNMP一键安装程序，支持Arm CPU**。
 
 > 使用前最好提前阅读一遍[目录](#目录)，以便快速上手，遇到问题也能及时排除。
