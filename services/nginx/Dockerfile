@@ -16,7 +16,7 @@ RUN if [ -z "${INSTALL_APPS##*,certbot,*}" ]; then \
         echo "---------- Install certbot ----------"; \
         apk add --no-cache certbot; \
     fi
-RUN apk add --no-cache openssl
+RUN apk add --no-cache openssl bash
 COPY site.conf.tpl /customization/
 COPY wintercms-site.conf.tpl /customization/
 COPY nginx.sh /customization/
