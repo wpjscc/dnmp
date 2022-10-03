@@ -17,12 +17,12 @@ RUN if [ -z "${INSTALL_APPS##*,certbot,*}" ]; then \
         apk add --no-cache certbot; \
     fi
 RUN apk add --no-cache openssl bash
-COPY site.conf.tpl /customization/
-COPY wintercms-site.conf.tpl /customization/
-COPY nginx.sh /customization/
 
-RUN chmod +x /customization/nginx.sh
+# COPY nginx.sh /customization/
+
+RUN chmod +x /etc/nginx/conf.d/nginx.sh
 
 WORKDIR /www
 
-CMD ["/customization/nginx.sh"]
+# CMD ["/customization/nginx.sh"]
+CMD ["/etc/nginx/conf.d/nginx.sh"]
