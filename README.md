@@ -27,6 +27,8 @@ docker compose run --rm --no-TTY --entrypoint certbot certbot delete --cert-name
 
 
 #证书参考 https://github.com/evgeniy-khist/letsencrypt-docker-compose
+
+假如要用其他nginx配置，可以先用laravel的模版将证书申请下来，再去 services/nginx/conf.d/下将自动以配置替换掉
 ```
 
 

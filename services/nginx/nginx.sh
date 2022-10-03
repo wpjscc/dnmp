@@ -7,6 +7,11 @@ if [ -z "$DOMAINS" ]; then
   exit 1;
 fi
 
+if [ -z "$DOMAINS_TEMPLATES" ]; then
+  echo "DOMAINS_TEMPLATES environment variable is not set"
+  exit 1;
+fi
+
 use_dummy_certificate() {
   if grep -q "/etc/letsencrypt/live/$1" "/etc/nginx/conf.d/$1.conf"; then
     echo "Switching Nginx to use dummy certificate for $1"
@@ -41,12 +46,20 @@ if [ ! -f /etc/nginx/conf.d/ssl/ssl-dhparams.pem ]; then
 fi
 
 domains_fixed=$(echo "$DOMAINS" | tr -d \")
+domain_templates_fixed=$(echo "$DOMAINS_TEMPLATES" | tr -d \")
+domain_templates_list=($domain_templates_fixed)
+i=0
 for domain in $domains_fixed; do
   echo "Checking configuration for $domain"
 
   if [ ! -f "/etc/nginx/conf.d/$domain.conf" ]; then
     echo "Creating Nginx configuration file /etc/nginx/conf.d/$domain.conf"
-    sed "s/\${domain}/$domain/g" /customization/site.conf.tpl > "/etc/nginx/conf.d/$domain.conf"
+    template="${domain_templates_list[i]}"
+    if [ template == "laravel"]; then
+        sed "s/\${domain}/$domain/g" /customization/site.conf.tpl > "/etc/nginx/conf.d/$domain.conf"
+    else
+        sed "s/\${domain}/$domain/g" /customization/site.conf.tpl > "/etc/nginx/conf.d/$domain.conf"
+    fi
   fi
 
   if [ ! -f "/etc/nginx/conf.d/ssl/dummy/$domain/fullchain.pem" ]; then
@@ -65,6 +78,7 @@ for domain in $domains_fixed; do
   else
     use_lets_encrypt_certificate "$domain"
   fi
+  i=$((i+1))
 done
 
 exec nginx -g "daemon off;"
