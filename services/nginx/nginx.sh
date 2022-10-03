@@ -58,7 +58,7 @@ for domain in $domains_fixed; do
     template="${domain_templates_list[i]}"
     echo $template
     if [ "$template" == "laravel" ]; then
-        sed "s/\${domain}/$domain/g" /customization/site.conf.tpl > "/etc/nginx/conf.d/$domain.conf"
+        sed "s/\${domain}/$domain/g" /customization/laravel-site.conf.tpl > "/etc/nginx/conf.d/$domain.conf"
     elif [ "$template" == "wintercms" ]; then
         sed "s/\${domain}/$domain/g" /customization/wintercms-site.conf.tpl > "/etc/nginx/conf.d/$domain.conf"
     else
