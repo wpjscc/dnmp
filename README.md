@@ -31,8 +31,8 @@ docker compose run --rm --no-TTY --entrypoint certbot certbot delete --cert-name
 自定义的证书可以放在services/nginx/ssl 下。增加配置模版可以参考laravel和wintercms
 
 分两步
-1 增加文件
-2 nginx.sh 添加个else适配(key 值在.env中和域名一一对应)
+1 增加配置文件 （参考services/nginx/confi.d/laravel-site.conf.tpl）
+2 nginx.sh 添加个else适配(key 值在.env中和域名一一对应,已有实例)
 3 docker-compose build nginx
 4 docker-compose restart nginx
 ```
